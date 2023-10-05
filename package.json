@@ -1,0 +1,41 @@
+{
+  "name": "rizzdown",
+  "bin": "./src/index.ts",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx  watch  --clear-screen=false --restart-on-return=false ./src/index.ts",
+    "start": "tsx ./src/index.ts",
+    "build": "tsup src/index.ts"
+  },
+  "dependencies": {
+    "@s-libs/micro-dash": "^16.1.0",
+    "bottleneck": "^2.19.5",
+    "chalk": "^5.3.0",
+    "check-node-version": "^4.2.1",
+    "commander": "^11.0.0",
+    "enquirer": "^2.4.1",
+    "exponential-backoff": "^3.1.1",
+    "figlet": "^1.6.0",
+    "front-matter": "^4.0.2",
+    "inquirer": "^9.2.11",
+    "marked": "^9.0.3",
+    "openai": "^4.11.1",
+    "ora": "^7.0.1",
+    "update-notifier": "^6.0.2",
+    "yaml": "^2.3.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.6",
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^20.8.2",
+    "@types/update-notifier": "^6.0.5",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "ts-node": "^10.9.1",
+    "tsup": "^7.2.0",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2"
+  }
+}
