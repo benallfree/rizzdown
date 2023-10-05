@@ -1,4 +1,6 @@
-<h1> 🌟 `rizzdown` 🌟 - Markdown's Dazzling BFF!</h1>
+<h1> rizzdown</h1>
+
+ <h2>🌟 `rizzdown` 🌟 - Markdown's Dazzling BFF!</h1>
 
 Ever felt your Markdown filled with your beautiful prose were the wallflowers at the prom? Not when `rizzdown` is your date! Turn that `md` frown upside down and give your content the shimmer and shine it deserves! 🎉
 
