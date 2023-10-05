@@ -49,6 +49,12 @@ Designed for technical authors and devs creating their linguistic empire using m
    rizzdown enhance --dry-run myfile.md
    ```
 
+   or do a whole batch
+
+   ```bash
+   rizzdown enhance --dry-run mycontent/**/*.md
+   ```
+
 3. **Adjust & Admire**:
 
    Peek into your newly-enhanced Markdown file. Tweak as you see fit and bask in its improved glory!
