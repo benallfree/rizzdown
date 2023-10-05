@@ -1,5 +1,8 @@
 {
   "name": "rizzdown",
+  "repository": "https://github.com/benallfree/rizzdown",
+  "homepage": "https://github.com/benallfree/rizzdown#readme",
+  "author": "benallfree (https://github.com/benallfree)",
   "bin": {
     "rizzdown": "./src/index.ts"
   },
