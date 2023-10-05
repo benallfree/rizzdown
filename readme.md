@@ -16,9 +16,9 @@ Think of `rizzdown` as the magical fairy godmother for your Markdown content. It
 
 ...and turn it into...
 
-> # This very readme.md!!!
+> # Wait, no. Y-yo-you're reading it right now?!
 
-Look at that, you're the belle of the ball. Perfect for all you authors crafting SSG sites and wanting your Markdown to be not just readable, but _rizzmarkable_.
+That's right, we used `rizzdown` to write this `readme.md`! Look at that, you're the belle of the ball. Perfect for all you authors crafting SSG sites and wanting your Markdown to be not just readable, but _rizzmarkable_.
 
 ## Features:
 
