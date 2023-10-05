@@ -23,7 +23,7 @@ import figlet from 'figlet'
 import { FONTS, getFontInfo } from './fonts'
 import { shuffle } from '@s-libs/micro-dash'
 import updateNotifier from 'update-notifier'
-import packageJson from '../package.json' assert { type: 'json' }
+import packageJson from '../../../package.json' assert { type: 'json' }
 import { homedir } from 'os'
 
 updateNotifier({ pkg: packageJson }).notify()
