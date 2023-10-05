@@ -4,7 +4,7 @@ Absolutely! Here's a playful README for `rizzdown`:
 
 # 🌟 `rizzdown` 🌟 - Markdown's Dazzling BFF!
 
-Ever felt your Markdown files were the wallflowers at the prom? Not when `rizzdown` is your date! Turn that `md` frown upside down and give your content the shimmer and shine it deserves! 🎉
+Ever felt your Markdown filled with your beautiful prose were the wallflowers at the prom? Not when `rizzdown` is your date! Turn that `md` frown upside down and give your content the shimmer and shine it deserves! 🎉
 
 Designed for technical authors and devs creating their linguistic empire using markdown content and SSG sites. Let's get your content poppin'!
 
