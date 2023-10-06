@@ -8,15 +8,20 @@ import { prompt } from 'enquirer'
 import figlet from 'figlet'
 import fm from 'front-matter'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
-import { homedir } from 'os'
 import { join } from 'path'
 import updateNotifier from 'update-notifier'
 import yaml from 'yaml'
-import packageJson from '../../../package.json' assert { type: 'json' }
-import factory from './core'
+import packageJson from '../../package.json' assert { type: 'json' }
+import factory, { RIZZ_HOME, RIZZ_HOME_DEFAULT } from '../core'
 import { getFontInfo } from './fonts'
 
-updateNotifier({ pkg: packageJson }).notify()
+const notifier = updateNotifier({
+  pkg: packageJson,
+  updateCheckInterval: 1,
+  shouldNotifyInNpmScript: true,
+})
+
+notifier.notify()
 
 const { font, holiday, color } = getFontInfo()
 figlet('rizzdown', { font: 'ANSI Regular' }, async (err, data) => {
@@ -60,12 +65,9 @@ function myParseInt(value: string, dummyPrevious: number) {
     })
   })
 
-  const RIZZ_HOME_DEFAULT = join(homedir(), `.rizzdown`)
-
   const p = console.log
 
   const home = await (async () => {
-    const RIZZ_HOME = process.env.RIZZDOWN_HOME || RIZZ_HOME_DEFAULT
     if (!existsSync(RIZZ_HOME)) {
       p(
         chalk.yellow(
@@ -143,7 +145,6 @@ function myParseInt(value: string, dummyPrevious: number) {
       const paths = program.args.slice(
         program.args.findIndex((v) => v === _path),
       )
-      console.log({ profile, options, paths })
 
       p(`Using profile: ${profile}`)
 

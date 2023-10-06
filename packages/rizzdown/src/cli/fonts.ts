@@ -442,10 +442,9 @@ const holidays: HolidayInfo[] = [
 export function getFontInfo(
   date = new Date(),
   fallbackFont: figlet.Fonts = 'ANSI Regular',
-  fallbackColor: string = '#dddddd'
+  fallbackColor: string = '#dddddd',
 ): { font: figlet.Fonts; holiday?: string; color: string } {
   const formattedDate = `${date.getMonth() + 1}-${date.getDate()}`
-  console.log(date, formattedDate)
   const holidayInfo = holidays.find((h) => h.date === formattedDate)
 
   if (holidayInfo) {

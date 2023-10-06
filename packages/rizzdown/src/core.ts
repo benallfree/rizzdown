@@ -31,6 +31,7 @@ export type RizzdownFactoryConfig = {
 }
 
 export const RIZZ_HOME_DEFAULT = join(homedir(), `.rizzdown`)
+export const RIZZ_HOME = process.env.RIZZDOWN_HOME || RIZZ_HOME_DEFAULT
 export const RIZZ_PROFILE_DEFAULT = 'default'
 
 export type RizzProfile = {
