@@ -7,16 +7,14 @@
     "rizzdown": "./src/index.ts"
   },
   "version": "0.0.4",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "license": "MIT",
+  "types": "dist/types.d.ts",
   "scripts": {
     "dev": "tsx  watch ./src/index.ts",
-    "start": "tsx ./src/index.ts"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
+    "start": "tsx ./src/index.ts",
+    "build": "parcel build ./src/core.ts",
+    "watch": "parcel watch ./src/core.ts"
   },
   "dependencies": {
     "bottleneck": "^2.19.5",
@@ -26,17 +24,19 @@
     "enquirer": "^2.4.1",
     "exponential-backoff": "^3.1.1",
     "figlet": "^1.6.0",
+    "find-up": "^6.3.0",
     "front-matter": "^4.0.2",
     "inquirer": "^9.2.11",
     "marked": "^9.0.3",
     "openai": "^4.11.1",
     "ora": "^7.0.1",
+    "tsx": "^3.13.0",
     "update-notifier": "^6.0.2",
     "yaml": "^2.3.2"
   },
   "devDependencies": {
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^3.2.3",
+    "@types/node": "^20.8.2",
+    "parcel": "^2.9.3",
     "typescript": "^5.2.2"
   }
 }

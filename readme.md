@@ -8,9 +8,23 @@ Designed for technical authors and devs creating their linguistic empire using m
 
 <!-- TOC -->
 
-- [Features](#features)
-- [Usage](#usage)
-- [How it Works](#how-it-works)
+- [CLI Usage](#cli-usage)
+- [How `rizzdown` Works](#how-rizzdown-works)
+- [🤖 API](#-api)
+  - [Introduction](#introduction)
+  - [Getting Started](#getting-started)
+  - [More on Configuration and Profile Setup](#more-on-configuration-and-profile-setup)
+    - [`RIZZDOWN_HOME`](#rizzdown_home)
+    - [OpenAI Secret Key](#openai-secret-key)
+    - [Profile Contents](#profile-contents)
+  - [Advanced Features](#advanced-features)
+    - [Context Enum](#context-enum)
+    - [Throttling](#throttling)
+    - [Exponential Backoff](#exponential-backoff)
+- [🛠 Crafting `rizzdown` Profiles By Hand](#-crafting-rizzdown-profiles-by-hand)
+  - [Setting Up Your Home Base:](#setting-up-your-home-base)
+  - [The OpenAI Key:](#the-openai-key)
+  - [Crafting Your Profile:](#crafting-your-profile)
 - [Tips](#tips)
 - [🧠 The `rizzdown` Intelligence: Crafting the Perfect Prose 🪶](#-the-rizzdown-intelligence-crafting-the-perfect-prose-)
 - [🗝 OpenAI API Key - The Magic Wand! 🪄](#-openai-api-key---the-magic-wand-)
@@ -18,14 +32,12 @@ Designed for technical authors and devs creating their linguistic empire using m
 
 <!-- /TOC -->
 
-# Features
-
 - 🚀 Instant Enhancements: Upgrade from mundane to magnificent with a simple command!
 - 🌈 Markdown-Friendly: Designed with `.md` files in mind.
 - 💡 Frontmatter Magic: Auto-generate `description`, `title`, and `# Overview`, and even rewrite your original content!
 - 🦥 Exponential Backoff: We're gentle with the GPT API. No throttling woes here!
 
-# Usage
+# CLI Usage
 
 1. **Installation**:
 
@@ -59,7 +71,7 @@ Designed for technical authors and devs creating their linguistic empire using m
 
    Peek into your newly-enhanced Markdown file. Tweak as you see fit and bask in its improved glory!
 
-# How it Works
+# How `rizzdown` Works
 
 When I created `rizzdown`, I wrote this:
 
@@ -70,6 +82,130 @@ When I created `rizzdown`, I wrote this:
 > <h3>Wait, no. Y-yo-you're reading it right now?!</h3>
 
 That's right, I used `rizzdown` to write this `readme.md`! Look at that, you're the belle of the ball. Perfect for all you authors crafting SSG sites and wanting your Markdown to be not just readable, but _rizzmarkable_.
+
+# 🤖 API
+
+## Introduction
+
+`rizzdown` offers a programmatic way to enhance your writing, leveraging the power of OpenAI. Create custom profiles to tailor the enhancement to your unique voice, style, and audience.
+
+## Getting Started
+
+`rizzdown` runs on nodejs>16 only. It will not run in the browser.
+
+```bash
+npm i rizzdown
+```
+
+```ts
+import { factory } from 'rizzdown'
+
+const { generate } = factory({ profilePath, subjectMatter })
+
+const rizzed = await generate(`Give me a funny 350 word summary`)
+```
+
+The `factory` function sets up the environment for generating enhanced content. `factory` supports these parameters. Everything is optional:
+
+- `profilePath`: Defaults to `$RIZZDOWN_HOME/default`, which is probably `~/.rizzdown/default` unless you changed the `RIZZDOWN_HOME` environment variable. You can provide a custom path too, which is handy when you have profiles stored in your project repo.
+- `promptIfProfileMissing`: Default `false`. If set to `true`, the system will prompt you for profile information if any is missing.
+- `maxConcurrent`: Maximum number of concurrent OpenAI API calls.
+- `subjectMatter`: The main content you wish to enhance.
+
+If you don't provide `subjectMatter` in to `factory`, you'll need to provide it when you call `generate`:
+
+```ts
+const rizzed = await generate(`Give me a funny 350 word summary`, {
+  subjectMatter: `...custom subjectMatter...`,
+})
+```
+
+## More on Configuration and Profile Setup
+
+### `RIZZDOWN_HOME`
+
+- By default, `rizzdown` uses `~/.rizzdown` as the home directory for profiles. Customize this by modifying `RIZZDOWN_HOME` in `.profile`, `.zshrc`, or `.bashrc`.
+
+### OpenAI Secret Key
+
+- Store the OpenAI secret key within the profile directory as `openai-secret-key`.
+- Alternatively, use the `OPENAI_SECRET_KEY` environment variable. Any key passed in the environment will override any other secret key source.
+- You can also store `openapi-secret-key` in `$RIZZDOWN_HOME`. Any profile that doesn't have its own secret key defined will use this global key.
+
+### Profile Contents
+
+A profile contains the following files:
+
+- **`openai-secret-key`**: Optional secret key to use with this profile only.
+- **`author.md`**: Author bio showcasing personality, background, and interests.
+- **`subject.md`**: Background information about the writing's subject.
+- **`audience.md`**: Description of the intended readership.
+- **`style.md`**: Description of the desired writing style, tone, and platform.
+
+## Advanced Features
+
+### Context Enum
+
+The `Context` enum helps identify different parts of a profile:
+
+```ts
+export enum Context {
+  Style = 'style',
+  Author = 'author',
+  Subject = 'subject',
+  Audience = 'audience',
+}
+```
+
+### Throttling
+
+The system leverages the `Bottleneck` library to handle rate limits, ensuring the OpenAI API isn't overwhelmed.
+
+### Exponential Backoff
+
+`rizzdown` gracefully handles retries with the `exponential-backoff` library, particularly useful if the OpenAI API requests get throttled.
+
+# 🛠 Crafting `rizzdown` Profiles By Hand
+
+Dive deeper into customization! Craft a `rizzdown` profile by hand and tailor the enhancement to your distinct voice, style, and audience. Here's how to get started:
+
+## Setting Up Your Home Base:
+
+- By default, `RIZZDOWN_HOME` is nestled snugly at `~/.rizzdown`.
+- Crave a change? Add `RIZZDOWN_HOME` to `.profile`, `.zshrc`, or `.bashrc`. Adjust the path to wherever you'd like your `rizzdown` settings to reside.
+- Flexing those programmatic muscles? Point to any desired spot during programmatic access.
+
+## The OpenAI Key:
+
+- Create a `openai-secret-key` file within `~/.rizzdown`. It should house your precious OpenAI secret key.
+- Feeling rebellious? Sidestep the file approach and use the `OPENAI_SECRET_KEY` environment variable. `rizzdown` will smartly fetch the key from there.
+- Bonus: Fancy using different keys? Store them safely inside individual profiles.
+
+## Crafting Your Profile:
+
+Profiles can have any name your heart desires and reside in `$RIZZDOWN_HOME/<profile-name>`. Here's what you need inside:
+
+1. **`author.md`**:
+
+   - Your spotlight! 🌟
+   - Pen down a bio capturing your essence: personality, interests, capabilities, and maybe that one time you fought a dragon (or just debugged a legacy codebase).
+
+2. **`subject.md`**:
+
+   - Your domain expertise.
+   - Fill it with information you'd assume is common knowledge for your readers. It sets the stage for your prose's context.
+
+3. **`audience.md`**:
+
+   - Meet your reader! 📚
+   - Describe their quirks, values, and their connection to your subject. The better you know them, the better `rizzdown` can tailor the content!
+
+4. **`style.md`**:
+   - Your desired narrative vibe.
+   - Clarify your prose type: Blog post? Technical document? Mysterious tale of the haunted mainframe?
+   - Define the tone: Humorous or serious? Casual chat or formal seminar? Describe any quirks to make the voice uniquely yours.
+
+**Pro Tip**: Remember, the better and more detailed your profile, the closer `rizzdown` can get to mirroring your unique voice and intention!
 
 # Tips
 
