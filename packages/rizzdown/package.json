@@ -6,7 +6,7 @@
   "bin": {
     "rizzdown": "./src/cli/index.ts"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "license": "MIT",
   "types": "dist/types.d.ts",
