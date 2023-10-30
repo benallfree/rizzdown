@@ -1,6 +1,6 @@
 import Bottleneck from 'bottleneck'
 import chalk from 'chalk'
-import { prompt } from 'enquirer'
+import * as enquire from 'enquirer'
 import { backOff } from 'exponential-backoff'
 import { findUpSync } from 'find-up'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
@@ -8,6 +8,8 @@ import OpenAI from 'openai'
 import { ChatCompletionMessageParam } from 'openai/resources/chat'
 import { homedir } from 'os'
 import { join } from 'path'
+
+const { prompt } = enquire
 
 export type RizzGeneratorOptions = {
   dryRun: boolean

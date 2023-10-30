@@ -8,6 +8,7 @@ Designed for technical authors and devs creating their linguistic empire using m
 
 <!-- TOC -->
 
+- [Features](#features)
 - [CLI Usage](#cli-usage)
 - [How `rizzdown` Works](#how-rizzdown-works)
 - [🤖 API](#-api)
@@ -17,6 +18,9 @@ Designed for technical authors and devs creating their linguistic empire using m
     - [`RIZZDOWN_HOME`](#rizzdown_home)
     - [OpenAI Secret Key](#openai-secret-key)
     - [Profile Contents](#profile-contents)
+  - [Usage](#usage)
+    - [Factory Configuration](#factory-configuration)
+    - [Content Generation](#content-generation)
   - [Advanced Features](#advanced-features)
     - [Context Enum](#context-enum)
     - [Throttling](#throttling)
@@ -31,6 +35,8 @@ Designed for technical authors and devs creating their linguistic empire using m
 - [Contribute](#contribute)
 
 <!-- /TOC -->
+
+# Features
 
 - 🚀 Instant Enhancements: Upgrade from mundane to magnificent with a simple command!
 - 🌈 Markdown-Friendly: Designed with `.md` files in mind.
@@ -141,6 +147,20 @@ A profile contains the following files:
 - **`subject.md`**: Background information about the writing's subject.
 - **`audience.md`**: Description of the intended readership.
 - **`style.md`**: Description of the desired writing style, tone, and platform.
+
+## Usage
+
+### Factory Configuration
+
+### Content Generation
+
+Use the `generate` function to create the enhanced content:
+
+```ts
+const content = await generate(prompt)
+```
+
+The `prompt` parameter defines the enhancement instructions, like "Generate a summary in 50 words or less". You can also use this to provide any final instructions on exactly how to craft the tone of the rizz'd result.
 
 ## Advanced Features
 
